@@ -1,0 +1,9 @@
+vendor
+tmp
+.DS_Store
+**.pb.*
+coverage.out
+runner.conf
+**/test.log
+**_generated.go
+Gopkg.lock

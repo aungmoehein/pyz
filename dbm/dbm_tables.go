@@ -1,0 +1,28 @@
+package dbm
+
+var createProfileSQL = `
+    CREATE TABLE %s (
+		id 			SERIAL,
+		uid 		INT UNIQUE NOT NULL,
+		name    	VARCHAR(255) DEFAULT NULL,
+		phone    	VARCHAR(255) DEFAULT NULL,
+		imgurl		VARCHAR(255) DEFAULT NULL,
+		score		INT NOT NULL DEFAULT 0,
+		active		TINYINT(1) NOT NULL DEFAULT 0,
+		created_at 	timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		updated_at 	timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+		INDEX (uid)
+    ) ENGINE=%s AUTO_INCREMENT=12345 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+`
+
+var createActivePacksSQL = `
+    CREATE TABLE %s (
+		id 			SERIAL,
+		uid 		INT NOT NULL,
+		pid    		VARCHAR(11) NOT NULL,
+		active		TINYINT(1) NOT NULL DEFAULT 0,
+		created_at 	timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		updated_at 	timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+		INDEX (uid)
+    ) ENGINE=%s AUTO_INCREMENT=12345 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+`
