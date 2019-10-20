@@ -27,6 +27,7 @@ func NewRouter(dbm *dbm.DatabaseManager) chi.Router {
 	router.Method("GET", "/user/{uid}/news", &NewsHandler{DB: dbm})
 	router.Method("GET", "/user/{uid}/packs", &PacksHandler{DB: dbm})
 	router.Method("POST", "/user/{uid}/pack/purchase", &PackPurchaseHandler{DB: dbm})
+	router.Method("GET", "/user/{uid}/faq", FaqsHandler{DB: dbm})
 
 	return router
 }

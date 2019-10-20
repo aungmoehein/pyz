@@ -62,16 +62,29 @@ type Pack struct {
 	CreatedAt        string
 }
 
+// FAQs contains FAQs variable in FAQs.toml
+type FAQs struct {
+	FAQs map[string]FAQ
+}
+
+// FAQ contains FAQ variable in FAQs.toml
+type FAQ struct {
+	Question string `json:"question"`
+	Answer   string `json:"answer"`
+}
+
 // Envs hold all enviroment variables needed for the app
 type Envs struct {
 	*Specification
 	*Article
 	*Packs
+	*FAQs
 
 	ID          string
 	Location    *time.Location
 	articlePath string
 	packsPath   string
+	faqsPath    string
 }
 
 var envInstance *Envs
@@ -152,6 +165,12 @@ func GetEnvironment() *Envs {
 			log.Fatal(err)
 		}
 
+		var faqs FAQs
+		var faqsPath = path.Join(settingPath, "faq.toml")
+		if _, err = toml.DecodeFile(faqsPath, &faqs); err != nil {
+			log.Fatal(err)
+		}
+
 		var location *time.Location
 		if location, err = time.LoadLocation(spec.Timezone); err != nil {
 			log.Error("Unable to get timzeone", err)
@@ -164,6 +183,7 @@ func GetEnvironment() *Envs {
 			Specification: &spec,
 			Article:       &article,
 			Packs:         &packs,
+			FAQs:          &faqs,
 
 			articlePath: articlePath,
 		}

@@ -7,3 +7,4 @@ runner.conf
 **/test.log
 **_generated.go
 Gopkg.lock
+etc/system.env

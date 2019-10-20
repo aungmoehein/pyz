@@ -31,6 +31,12 @@ type NewsResponse struct {
 	News    []env.New `json:"news"`
 }
 
+// FaqsResponse is news api JSON response
+type FaqsResponse struct {
+	Success bool      `json:"success"`
+	FAQ     []env.FAQ `json:"faqs"`
+}
+
 // PacksResponse is packs api JSON response
 type PacksResponse struct {
 	Success bool       `json:"success"`
